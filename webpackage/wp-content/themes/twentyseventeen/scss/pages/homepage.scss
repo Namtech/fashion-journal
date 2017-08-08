@@ -1,0 +1,99 @@
+#homePage{
+  .wrapperHomemain{
+    margin: 0px 112px;
+    h1{
+      color: #686868;
+      font-size: 48px;
+      padding-bottom: 33px;
+      padding-top: 94px;
+      line-height: 63px;
+      font-weight: 300;
+      margin: 0px;
+    }
+    .viewContain {
+      .listUserDashboard {
+        background-color: #fcfbfc;
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        padding-top: 17px;
+        padding-bottom: 19px;
+        margin-bottom: 12px;
+        &:last-child {
+          margin: 0px;
+        }
+        .imageListUserDashboard {
+          width: auto;
+          padding-left: 29px;
+          padding-right: 13px;
+          img{
+            width: 52px;
+            height: 52px;
+          }
+        }
+        .nameAndActiveUserDashboard {
+          padding-left: 13px;
+          p {
+            color: #2f3540;
+            font-size: 18px;
+            line-height: 20px;
+            font-weight: 700;
+            margin-bottom: 2px;
+          }
+          i {
+            font-size: 6px;
+            vertical-align: middle;
+          }
+          span {
+            color: #2f3540;
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 10px;
+          }
+        }
+        .launchDateUserDashboard {
+          span {
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 400;
+            &:first-child {
+              color: #2f3540;
+            }
+            &:last-child {
+              color: #828893;
+            }
+          }
+        }
+        .landingPagesCount{
+          span{
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 400;
+            &:first-child {
+              color: #2f3540;
+            }
+            &:last-child {
+              color: #828893;
+            }
+          }
+        }
+        .viewAnalyticsButton{
+          text-align: right;
+          a{
+            color: #ffffff;
+            font-size: 11px;
+            line-height: 15px;
+            padding: 6px 10px;
+            background-color: #828893;
+            border: 2px solid #828893;
+            border-radius: 100px;
+            &:hover{
+              background-color: transparent;
+              color: #828893;
+            }
+          }
+        }
+      }
+    }
+  }
+}

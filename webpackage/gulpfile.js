@@ -42,28 +42,15 @@ var Config = {
         interlaced: true
     },
     paths: {
-        wp - content: {
+        src: {
             root: './wp-content',
-            js: './wp-content/js',
-            scss: './wp-content/scss',
-            css: './wp-content/css',
-            images: './wp-content/img',
-            fonts: './wp-content/fonts',
-            lib: './wp-content/lib',
-            tmpl: './wp-content/tmpl',
             extra: [
-                //'wp-content/foo/**/*',
-                //'wp-content/bar/**/*'
+                //'src/foo/**/*',
+                //'src/bar/**/*'
             ]
         },
         build: {
-            root: '../test/AWS-BitBucket',
-            js: '../test/AWS-BitBucket/js',
-            css: '../test/AWS-BitBucket/css',
-            scss: '../test/AWS-BitBucket/scss',
-            images: '../test/AWS-BitBucket/img',
-            fonts: '../test/AWS-BitBucket/fonts',
-            lib: '../test/AWS-BitBucket/lib',
+            root: '../wp-content',
             extra: [
                 //'AWS-BitBucket/foo/',
                 //'AWS-BitBucket/bar/'
@@ -72,18 +59,6 @@ var Config = {
     }
 }
 
-// Tasks
-// =====
-
-// Styles
-gulp.task('styles', function() {
-    return gulp.src(Config.paths.wp - content.scss + '/index.scss')
-        .pipe(sass({
-            errLogToConsole: true
-        }))
-        .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest(Config.paths.wp - content.css));
-});
 
 
 
@@ -92,35 +67,45 @@ gulp.task('styles', function() {
 
 
 gulp.task('migrate', () => {
-    return gulp.src(Config.paths.wp - content.root + '/**/*')
+    return gulp.src(Config.paths.src.root + '/**/*')
         .pipe(gulp.dest(Config.paths.build.root));
 });
 
 
-gulp.task('buildStyles', ['migrate'], () => {
-    return gulp.src(Config.paths.build.scss + '/*.scss')
+gulp.task('buildSCSS', ['migrate'], () => {
+    return gulp.src(Config.paths.build.root + '/**/*/main.scss')
         .pipe(sass({
-            errLogToConsole: true
+            errLogToConsole: true,
         }))
-        .pipe(gulp.dest(Config.paths.build.css));
+        .pipe(gulp.dest(Config.paths.build.root));
 });
 
 
-gulp.task('cleanCSS', ['buildStyles'], () => {
-    return gulp.src(Config.paths.build.css + '/*.css')
+gulp.task('cleanCSS', ['buildSCSS'], () => {
+    return gulp.src(Config.paths.build.root + '/**/*.css')
         .pipe(cleanCss({ debug: true }, function(details) {
             console.log(details.name + ': ' + details.stats.originalSize);
             console.log(details.name + ': ' + details.stats.minifiedSize);
         }))
-        .pipe(gulp.dest(Config.paths.build.css));
+        .pipe(gulp.dest(Config.paths.build.root));
 });
 
 
 gulp.task('uglifyJS', ['cleanCSS'], () => {
-    return gulp.src(Config.paths.build.js + '/*.js')
+    return gulp.src(Config.paths.build.root + '/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest(Config.paths.build.js));
+        .pipe(gulp.dest(Config.paths.build.root));
 });
+
+
+gulp.task('build', ['uglifyJS']);
+
+
+
+
+
+
+// AWS SERVER TASKS
 
 
 gulp.task('replaceLocalhost', ['uglifyJS'], () => {
@@ -146,32 +131,12 @@ gulp.task('createDbupdateFolder', () => {
 });
 
 
-gulp.task('build', ['replaceLocalhost']);
-
-
-
-
-
-
-
-
-
-
-// Fonts
-gulp.task('fonts:clean', function(next) {
-    del(Config.paths.build.fonts + '/**', next);
-});
-gulp.task('fonts', ['fonts:clean'], function() {
-    return gulp.src(Config.paths.wp - content.fonts + '/**/*')
-        .pipe(gulp.dest(Config.paths.build.fonts + '/'));
-});
-
 // Images
 gulp.task('images:clean', function(next) {
     del(Config.paths.build.images + '/**', next);
 });
 gulp.task('images', ['images:clean'], function() {
-    return gulp.src(Config.paths.wp - content.images + '/**/*')
+    return gulp.src(Config.paths.src.images + '/**/*')
         .pipe(gulpifelse(
             Config.cache,
             function() {
@@ -186,14 +151,14 @@ gulp.task('images', ['images:clean'], function() {
 
 // Templates
 gulp.task('templates', function() {
-    // return gulp.src(Config.paths.wp-content.tmpl + '/**/*')
+    // return gulp.src(Config.paths.src.tmpl + '/**/*')
     //   .pipe(handlebars())
     //   .pipe(defineModule('plain'))
     //   .pipe(declare({
     //     namespace: 'tmpl'
     //   }))
     //   .pipe(concat('templates.js'))
-    //   .pipe(gulp.dest(Config.paths.wp-content.js + '/'));
+    //   .pipe(gulp.dest(Config.paths.src.js + '/'));
 });
 
 // HTML, JavaScript, CSS
@@ -207,7 +172,7 @@ gulp.task('html', ['html:clean'], function() {
 
     var assets = useref.assets();
 
-    return gulp.src([Config.paths.wp - content.root + '/**/*.html', '!' + Config.paths.wp - content.lib + '/**/*'])
+    return gulp.src([Config.paths.src.root + '/**/*.html', '!' + Config.paths.src.lib + '/**/*'])
         .pipe(assets)
         .pipe(jsFilter)
         .pipe(uglify())
@@ -226,7 +191,7 @@ gulp.task('html', ['html:clean'], function() {
 // Server
 gulp.task('server', function() {
     var server = express()
-        .use(express.static(path.resolve(Config.paths.wp - content.root)))
+        .use(express.static(path.resolve(Config.paths.src.root)))
         .listen(Config.port);
     gutil.log('Server listening on port ' + Config.port);
 });
@@ -240,20 +205,20 @@ gulp.task('livereload', function() {
 
 // Watches
 gulp.task('watch', function() {
-    watch(Config.paths.wp - content.scss + '/**/*.scss', function() {
+    watch(Config.paths.src.scss + '/**/*.scss', function() {
         gulp.start('styles');
     });
-    // watch(Config.paths.wp-content.tmpl + '/**/*.hbs', function() {
+    // watch(Config.paths.src.tmpl + '/**/*.hbs', function() {
     //     gulp.start('templates');
     // });
     gulp.watch([
-        Config.paths.wp - content.images + '/**/*.png',
-        Config.paths.wp - content.images + '/**/*.jpg',
-        Config.paths.wp - content.images + '/**/*.jpeg',
-        Config.paths.wp - content.images + '/**/*.gif',
-        Config.paths.wp - content.css + '/**/*.css',
-        Config.paths.wp - content.js + '/**/*.js',
-        Config.paths.wp - content.root + '/**/*.html'
+        Config.paths.src.images + '/**/*.png',
+        Config.paths.src.images + '/**/*.jpg',
+        Config.paths.src.images + '/**/*.jpeg',
+        Config.paths.src.images + '/**/*.gif',
+        Config.paths.src.css + '/**/*.css',
+        Config.paths.src.js + '/**/*.js',
+        Config.paths.src.root + '/**/*.html'
     ], function(evt) {
         livereload.changed(evt.path);
     });

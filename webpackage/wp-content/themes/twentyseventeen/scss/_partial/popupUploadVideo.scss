@@ -1,0 +1,95 @@
+#uploadVideoModal{
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #eee;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FF003A;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+  }
+  .modal-dialog{
+    width: 780px;
+    .modal-content{
+      background:#eee;
+      padding: 10px 0;
+      .modal-header{
+        h4{
+          color: #828893;
+          font-family: 'Basis-Grotesque-Medium',sans-serif;
+          font-weight: normal;
+          font-size: 20px;
+          text-align: left;
+        }
+      }
+      .modal-body{
+        .contentPadding{
+          background: #fff;
+          padding: 10px 15px 10px 0;
+          ul{
+            padding-left: 0;
+            max-height: 400px;
+            overflow-y: scroll;
+            li{
+              max-height: 130px;
+              padding: 15px 0 15px 15px;
+              cursor: pointer;
+              -webkit-transition: all .5s;
+              -moz-transition: all .5s ;
+              -ms-transition: all .5s ;
+              -o-transition: all .5s ;
+              transition: all .5s ;
+              text-align: left;
+              &:hover{
+                background: red;
+                h4{
+                  color: #fff !important;
+                  span{
+                    color: #fff !important;
+                  }
+                }
+                .img{background: #fff;}
+              }
+              .img{
+                display: inline-block;
+                width: 150px;
+                height: 100px;
+                -webkit-border-radius:4px;
+                -moz-border-radius:4px;
+                border-radius:4px;
+                background-color: #cbcbcb;
+              }
+              h4{
+                display: inline-block;
+                font-family: 'Basis-Grotesque-Medium',sans-serif !important;
+                font-weight: normal;
+                font-size: 20px !important;
+                line-height: normal;
+                color: #828893 !important;
+                margin-left:40px;
+                vertical-align: top;
+                max-width: 450px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                span{
+                  font-family: 'Basis-Grotesque-Regular',sans-serif;
+                  text-align: left;
+                  margin: 0;
+                  font-size: 20px !important;
+                  color: #828893 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

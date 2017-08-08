@@ -1,0 +1,15 @@
+.loading-box{
+  width: 100%;
+  background: rgba(0, 0, 0, 0.23);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  img{
+    margin-top: calc( 50% - 300px);
+    width: 100px;
+  }
+}

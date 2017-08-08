@@ -1,0 +1,43 @@
+#addNewCampaignPage {
+  .wrapperAddNewCampaign {
+    .stepOne {
+      .form-group.margin-space{
+        margin-bottom: 38px;
+      }
+      .optionChoice {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        float: left;
+        margin-bottom: 50px;
+        p:not(.or){
+          width: 50%;
+          float: left;
+          color: #2e3237;
+          font-size: 18px;
+          padding: 29px 99px 25px 98px;
+          background-color: #FFFFFF;
+          margin: 0px;
+        }
+        p.sale, p.train{
+          color: #f22e00;
+          font-size: 18px;
+          font-family: 'Gotham-Bold', sans-serif;
+          border: 2px solid #f22e00;
+        }
+        .or {
+          padding: 7px 28px 6px 30px;
+          color: #2e3237;
+          font-size: 10px;
+          font-family: 'Gotham-Bold', sans-serif;
+          position: absolute;
+          z-index: 5;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #f0f0f1;
+        }
+      }
+    }
+  }
+}
