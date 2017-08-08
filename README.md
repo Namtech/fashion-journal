@@ -12,12 +12,12 @@
 
 Via Command Prompt type:
 
-- cd .../../htdocs
-- git clone git@github.com:Namtech/fashion-journal.git
+- cd .../.../htdocs: navigate to your PHP root folder where you host PHP website
+- clone this repo into your htdocs folder
 - cd fashion-journal
 - copy and past your current wordpress appication to this folder
 - then cd webpackage
-- delet the wp-content folder, then copy and past your current wp-content folder to this directory
+- delete the wp-content folder, then copy and past your current wp-content folder to this directory
 - npm install
 - gulp build
 
@@ -25,7 +25,7 @@ Via Command Prompt type:
 
 The gulp command will do the followings:
 
-- It first migrate any files and folders within the directory './webpackage/wp-content' to './wp-content'. Any code belongs to './webpackage/wp-content' will be left unchanged for developers to continue thier works
+- It first migrate any files and folders within the directory './webpackage/wp-content' to './wp-content'. Any code belongs to './webpackage/wp-content' will be left unchanged for developers to continue their works
 - Then, gulp will try to find any Scss files within the directory './wp-content' and compile them to Css files
 - After that, it continues to find any Css and Js files within the directory './wp-content' and minify them
 - PHP team can view their website via localhost as normal. This version of website has Scss and Js files compiled and minified
