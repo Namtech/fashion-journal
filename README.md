@@ -1,58 +1,94 @@
-# Fashion-journal - A wordpress application with gulp builder
+# Gulp Starter
 
-## Wordpress - Gulp - AWS CodeCommit
+<img align="right" src="https://raw.github.com/3bola/gulp-starter/master/app/img/pipboy.jpg" hspace="20" vspace="10" width="320">
 
-### Patterns and Principles in this project
+A gulp.js starter template with basic tasks for development and production.
 
-- Automatically build Scss, Sass into Css
-- Minify Css, Uglify Js
-- Automatically deploy to AWS S3 Bucket via CodeCommit
+* Source: [http://github.com/3bola/gulp-starter](http://github.com/3bola/gulp-starter)
+* Issues: [https://github.com/3bola/gulp-starter/issues](https://github.com/3bola/gulp-starter/issues)
 
-### Install
+### Features
 
-Via Command Prompt type:
+* Simple HTML5 boilerplate
+* Separated development environment
+* Livereloading development server with automatic building of SCSS files
+* Bower component management
+* Automatic image compressing
+* SCSS compiling
+* CSS autoprefixing, combining and minifying
+* JavaScript combining and compressing with uglify
+* Handlebars templates
+* Font Awesome icons
 
-- cd .../.../htdocs: navigate to your PHP root folder where you host PHP website
-- clone this repo into your htdocs folder
-- cd fashion-journal
-- copy and past your current wordpress appication to this folder
-- then cd webpackage
-- delete the wp-content folder, then copy and past your current wp-content folder to this directory
-- npm install
-- gulp build
+### Usage
 
-### Code flow
+#### Install
 
-The gulp command will do the followings:
+* Make sure you have latest [NodeJS](http://nodejs.org/) installed.
+* Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin. (Optional)
 
-- It first migrate any files and folders within the directory './webpackage/wp-content' to './wp-content'. Any code belongs to './webpackage/wp-content' will be left unchanged for developers to continue their works
-- Then, gulp will try to find any Scss files within the directory './wp-content' and compile them to Css files
-- After that, it continues to find any Css and Js files within the directory './wp-content' and minify them
-- PHP team can view their website via localhost as normal. This version of website has Scss and Js files compiled and minified
-- From now on, changes for wordpress themes should only be made within the './webpackage/wp-content' directory
+Run:
+```sh
+git clone https://github.com/3bola/gulp-starter.git && cd gulp-starter && npm install
+```
 
-### Watcher
+Then just wait for your browser to open [http://localhost:8080/](http://localhost:8080/)!
 
-In progress...
+#### Development server
 
-- Gulp will watch for any changes that have been made within the './webpackage/wp-content' directory and automatically build and minified Scss and Js files
-- Changes can be viewed via the Command Prompt
+To start the development server, run:
+```sh
+gulp
+```
 
-### Server Integration
+To open the URL in your browser at the same time, run:
+```sh
+gulp -o
+```
 
-In progress...
+#### Building
 
-- This Git repo is in sync with an Amazon S3 Bucket
-- Any commit to this folder will first update the AWS S3 Bucket
-- If there are any changes to AWS S3 Bucket, AWS CodePipeline will automatically run the Configuration Phase
-- In the Configuration Phase: a gulp command will be runned to:
-    + Find any function.php files within the root directory, (except for the './webpackage/wp-content' directory) and replace 'http://localhost' string to 'http://fj-sg.nativesdev.com.au'
-    + Then Update database scheme to mySQL database
-- After the Configuration Phase, AWS CodeBuild will be runned and the project will be deployed to an AWS EC2 Instance for Staging
-- Testers will confirm the Staging and then AWS CodeBuild will continue to deploy to Production
+To build and compress the application to the `dist` folder, run:
+```sh
+gulp build
+```
 
-### Command Prompt
+#### Templates
 
-In progress...
+Template files are loaded automatically to global object `tmpl`.
+For example file `Main.ListView.hbs` would be accessible from `tmpl.Main.ListView` function.
 
-- npm build     ---------------// install dependencies and run gulp build
+#### Image caching
+
+The build script does not automatically cache the compressed images. If you want to cache the images, run the build script with:
+```sh
+gulp build --cache
+```
+
+#### Configuration
+
+You can find some useful options in the `gulpfile.js` file.
+
+### License
+
+#### The MIT License (MIT)
+
+Copyright (c) Juri Saltbacka
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

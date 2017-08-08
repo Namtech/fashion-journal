@@ -43,14 +43,14 @@ var Config = {
     },
     paths: {
         src: {
-            root: './wp-content',
+            root: './webpackage/wp-content',
             extra: [
                 //'src/foo/**/*',
                 //'src/bar/**/*'
             ]
         },
         build: {
-            root: '../wp-content',
+            root: './wp-content',
             extra: [
                 //'AWS-BitBucket/foo/',
                 //'AWS-BitBucket/bar/'
@@ -72,7 +72,7 @@ gulp.task('migrate', () => {
 });
 
 
-gulp.task('cleanStyles', ['migrate'], () => {
+gulp.task('cleanStyles', () => {
     del([Config.paths.build.root + '/**/*'], { force: true }).then(paths => {
         console.log('Deleted files and folders:\n', paths.join('\n'));
     });;
@@ -106,6 +106,7 @@ gulp.task('uglifyJS', ['cleanCSS'], () => {
 
 
 gulp.task('build', ['uglifyJS']);
+
 
 
 
