@@ -11,8 +11,8 @@
     },
     "scripts": {
         "install": "bower install",
-        "start": "gulp build",
-        "restart": "gulp cleanStyles && gulp build"
+        // "start": "gulp build",
+        "start": "gulp cleanStyles && gulp build"
     },
     "devDependencies": {
         "bower": "*",
