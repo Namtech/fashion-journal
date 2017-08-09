@@ -59,7 +59,8 @@ htdocs:
 - |__ wp-[...]-------------------------// Wordpress files.
 - |
 - |__ webpackage-----------------------// Source of templates development.
-- |     |__ wp-content---------------- // Preserve the structure of root wp-content folder, used for template development
+- |     |__ wp-content---------------- // Preserve the structure of root wp-content folder, 
+- |         |                          // Used for template development
 - |         |__ themes
 - |         |__ plugins
 - |         |__ index.php
@@ -90,26 +91,26 @@ npm start
 
 When `npm start` is runned, it does the following:
 
-1; Migrate all files and structure from `htdocs\webpackage\wp-content` to `htdocs\wp-content`
+1. Migrate all files and structure from `htdocs\webpackage\wp-content` to `htdocs\wp-content`
 
-2; Inside the `htdocs\wp-content` folder, find all `main.scss` files and compile them into `main.css` files
+2. Inside the `htdocs\wp-content` folder, find all `main.scss` files and compile them into `main.css` files
 
-3; Inside the `htdocs\wp-content` folder, find all `*.scss` and `*.js` files and compress them
+3. Inside the `htdocs\wp-content` folder, find all `*.scss` and `*.js` files and compress them
 
-4; Inside the `htdocs\wp-content` folder, find all `*.img, *.png, *.jpeg` and compress them
+4. Inside the `htdocs\wp-content` folder, find all `*.img, *.png, *.jpeg` and compress them
 
 When `git commit` is runned, it does the following:
 
-1; Update changes to the `AWS S3 Bucket` via `AWS CodeCommit`
+1. Update changes to the `AWS S3 Bucket` via `AWS CodeCommit`
 
-2; Then `AWS CodeBuild` will be runned to:
+2. Then `AWS CodeBuild` will be runned to:
 
-    * Update MySQL Schema to Server
-    * Locate all `function.php` files and change the string from `http:\\localhost` to `http://fj-sg.nativesdev.com.au`
+    + Update MySQL Schema to Server
+    + Locate all `function.php` files and change the string from `http:\\localhost` to `http://fj-sg.nativesdev.com.au`
 
-3; Then `AWS CodeDeploy` will deploy the repository to `AWS EC2 Instance` for Staging
+3. Then `AWS CodeDeploy` will deploy the repository to `AWS EC2 Instance` for Staging
 
-4; If tested thoroughly, `AWS CodeDeploy` will continue to deploy it to the Production Server
+4. If tested thoroughly, `AWS CodeDeploy` will continue to deploy it to the Production Server
 
 #### Deploying
 
