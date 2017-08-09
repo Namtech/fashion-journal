@@ -113,7 +113,7 @@ gulp.task('build', ['uglifyJS']);
 // AWS SERVER TASKS
 
 
-gulp.task('replaceLocalhost', ['uglifyJS'], () => {
+gulp.task('replaceLocalhost', () => {
 
     // const htmlFilter = filter('**/*.html');
     const phpFilter = filter('**/*.php');
@@ -134,6 +134,8 @@ gulp.task('createDbupdateFolder', () => {
     return runCmd('php function.php --uri=dbupdate/update/dev').exec()
         .pipe(gulp.dest(Config.paths.build.root));
 });
+
+gulp.task('deploy', ['replaceLocalhost']);
 
 
 // Images
