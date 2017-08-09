@@ -13,6 +13,7 @@ var argv = require('minimist')(process.argv.slice(2)),
     minifyCss = require('gulp-minify-css'),
     cleanCss = require('gulp-clean-css'),
     replace = require('gulp-replace'),
+    zip = require('gulp-zip'),
     concat = require('gulp-concat'),
     minifyHtml = require('gulp-minify-html'),
     runCmd = require('gulp-run'),
@@ -136,6 +137,12 @@ gulp.task('createDbupdateFolder', () => {
 });
 
 gulp.task('deploy', ['replaceLocalhost']);
+
+gulp.task('zip', () => {
+    gulp.src('./*')
+        .pipe(zip('my-app.zip'))
+        .pipe(gulp.dest('./build'));
+});
 
 
 // Images

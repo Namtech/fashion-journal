@@ -12,7 +12,8 @@
     "scripts": {
         "install": "bower install",
         "start": "gulp cleanStyles && gulp build",
-        "build": "gulp cleanStyles && gulp build && gulp deploy"
+        "build": "gulp cleanStyles && gulp build && gulp zip",
+        "deploy": "git push git@github.com:nguyenpham95/fashion-journal.git --all"
     },
     "devDependencies": {
         "bower": "*",
@@ -41,6 +42,7 @@
         "gulp-useref": "^3.1.2",
         "gulp-util": "*",
         "gulp-watch": "*",
+        "gulp-zip": "^4.0.0",
         "minimist": "*",
         "opn": "*",
         "standard": "*"
