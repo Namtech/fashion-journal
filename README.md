@@ -1,68 +1,126 @@
-# Gulp Starter
+# Fashion Journal
 
 <img align="right" src="https://raw.github.com/3bola/gulp-starter/master/app/img/pipboy.jpg" hspace="20" vspace="10" width="320">
 
-A gulp.js starter template with basic tasks for development and production.
+A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS Code Pipeline
 
-* Source: [http://github.com/3bola/gulp-starter](http://github.com/3bola/gulp-starter)
-* Issues: [https://github.com/3bola/gulp-starter/issues](https://github.com/3bola/gulp-starter/issues)
+* Inspired by: [http://github.com/3bola/gulp-starter](http://github.com/3bola/gulp-starter)
 
 ### Features
 
-* Simple HTML5 boilerplate
-* Separated development environment
+* Original Wordpress application structure
 * Livereloading development server with automatic building of SCSS files
 * Bower component management
 * Automatic image compressing
 * SCSS compiling
 * CSS autoprefixing, combining and minifying
 * JavaScript combining and compressing with uglify
-* Handlebars templates
-* Font Awesome icons
+* Automatic deploy to AWS Code Pipeline with AWS CodeCommit, CodeBuild and CodeDeploy
 
 ### Usage
 
-#### Install
+#### Prerequisite
 
 * Make sure you have latest [NodeJS](http://nodejs.org/) installed.
 * Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin. (Optional)
+* Download or your current [Word Press](https://wordpress.org/download/) template.
+* Download [XAMPP](https://www.apachefriends.org/download.html) and setup PHP environment [Apache and MySQL](https://netbeans.org/kb/docs/php/configure-php-environment-windows.html)
 
-Run:
+#### Installation
+
+Note: before following the steps below please locate your ```htdocs``` folder. Then open Command Prompt and type:
+
 ```sh
-git clone https://github.com/3bola/gulp-starter.git && cd gulp-starter && npm install
+git clone git@github.com:Namtech/fashion-journal.git /***/***/htdocs
+cd /***/***/htdocs
+npm install && npm start
 ```
 
-Then just wait for your browser to open [http://localhost:8080/](http://localhost:8080/)!
+Then using XAMPP Control Pannel and start Apache and mySQL and go to your browser to open [http://localhost](http://localhost)!
 
-#### Development server
+#### Structure
 
-To start the development server, run:
 ```sh
-gulp
+htdocs:
+- |__ .vscode
+- |__ .gitignore
+- |
+- |__ wp-admin-------------------------// Wordpress folder.
+- |     |__ [...]
+- |
+- |__ wp-content-----------------------// Wordpress templates holder
+- |     |__ themes
+- |     |__ plugins
+- |     |__ index.php
+- |
+- |__ wp-includes----------------------// Wordpress plugins
+- |     |__ [...]
+- |
+- |__ wp-[...]-------------------------// Wordpress files.
+- |
+- |__ webpackage-----------------------// Source of templates development.
+- |     |__ wp-content---------------- // Preserve the structure of root wp-content folder, used for template development
+- |         |__ themes
+- |         |__ plugins
+- |         |__ index.php
+- |
+- |__ .node_modules--------------------// Nodejs modules for gulp
+- |
+- |__ gulpfile.js----------------------// Front-end compilation file
+- |__ bower.json-----------------------// Bower package manager for gulp
+- |__ package.json---------------------// npm scripts for development and deployment
+
 ```
 
-To open the URL in your browser at the same time, run:
+#### Running
+
+To build your code and see changes in localhost, run:
+
 ```sh
-gulp -o
+npm start
 ```
 
-#### Building
+#### Developing
 
-To build and compress the application to the `dist` folder, run:
+* In wordpress, template files are stored in folder `wp-content`
+* Your template files should be located in the folder `htdocs\webpackage\wp-content`
+* When `npm start` are runned, files within `htdocs\webpackage\wp-content` will be compiled and migrated to `htdocs\wp-content`
+
+#### Codeflow
+
+When `npm start` is runned, it does the following:
+
+1; Migrate all files and structure from `htdocs\webpackage\wp-content` to `htdocs\wp-content`
+
+2; Inside the `htdocs\wp-content` folder, find all `main.scss` files and compile them into `main.css` files
+
+3; Inside the `htdocs\wp-content` folder, find all `*.scss` and `*.js` files and compress them
+
+4; Inside the `htdocs\wp-content` folder, find all `*.img, *.png, *.jpeg` and compress them
+
+When `git commit` is runned, it does the following:
+
+1; Update changes to the `AWS S3 Bucket` via `AWS CodeCommit`
+
+2; Then `AWS CodeBuild` will be runned to:
+
+    * Update MySQL Schema to Server
+    * Locate all `function.php` files and change the string from `http:\\localhost` to `http://fj-sg.nativesdev.com.au`
+
+3; Then `AWS CodeDeploy` will deploy the repository to `AWS EC2 Instance` for Staging
+
+4; If tested thoroughly, `AWS CodeDeploy` will continue to deploy it to the Production Server
+
+#### Deploying
+
+To deploy your code to Staging, make a normal git commit:
+
 ```sh
-gulp build
-```
-
-#### Templates
-
-Template files are loaded automatically to global object `tmpl`.
-For example file `Main.ListView.hbs` would be accessible from `tmpl.Main.ListView` function.
-
-#### Image caching
-
-The build script does not automatically cache the compressed images. If you want to cache the images, run the build script with:
-```sh
-gulp build --cache
+git status
+git add .
+git commit -m "Your work instance"
+git pull origin master
+git push origin master
 ```
 
 #### Configuration
