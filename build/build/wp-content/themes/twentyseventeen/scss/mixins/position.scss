@@ -1,0 +1,11 @@
+/*
+ * Box position
+ * Usage : @include position(top,right,bottom,left);
+ * Default value is inherit
+ */
+@mixin position($top,$right,$bottom,$left){
+  top:$top;
+  right:$right;
+  bottom:$bottom;
+  left:$left;
+}

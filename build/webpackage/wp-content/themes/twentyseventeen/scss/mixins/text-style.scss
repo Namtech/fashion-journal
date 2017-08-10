@@ -1,0 +1,11 @@
+/*
+ * Limit the text when overflow
+ * Usage : .text_limit;
+ */
+
+@mixin text_limit {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

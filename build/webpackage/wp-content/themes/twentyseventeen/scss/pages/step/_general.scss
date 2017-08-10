@@ -1,0 +1,108 @@
+#addNewCampaignPage {
+  .wrapperAddNewCampaign {
+    width: 500px;
+    margin: auto;
+    .form-group {
+      background-color: #ffffff;
+      padding: 16px;
+      margin-bottom: 20px;
+      label {
+        font-weight: 700;
+        color: #000000;
+        font-size: 10px;
+        line-height: 19px;
+        text-transform: uppercase;
+        margin: 0px;
+      }
+      input.form-control, textarea.form-control {
+        border: none;
+        box-shadow: none;
+        padding: 0px;
+        color: $mainColor;
+        font-size: 20px;
+        line-height: 19px;
+      }
+      textarea.form-control {
+        margin-top: 9px;
+      }
+    }
+    .formInline {
+      margin-left: -18px;
+      margin-right: -18px;
+      overflow: auto;
+      .padding-space {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+    .bottomNextStep {
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      line-height: 13px;
+      color: #ffffff;
+      font-family: 'Gotham-Bold', sans-serif;
+      background-color: #f13814;
+      border: none;
+      border-radius: 0px;
+      padding-top: 40px;
+      padding-bottom: 39px;
+    }
+    h1 {
+      color: #686868;
+      font-size: 18px;
+      margin: 62px 0 45px 0;
+    }
+    .titleFormGroup {
+      color: #2e3237;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .stepbystepTab {
+      text-align: center;
+      position: relative;
+      margin-top: 51px;
+      .line {
+        position: absolute;
+        background-color: #b4becc;
+        height: 1px;
+        width: 105px;
+        top: 47%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+      }
+      .margin-space {
+        margin-right: 24px;
+      }
+      .addNewStep {
+        text-decoration: none;
+        z-index: 1;
+        display: inline-block;
+        position: relative;
+        .dotStep {
+          width: 9px;
+          height: 9px;
+          background-color: #7b889a;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+        }
+      }
+      .addNewStep.activeStep {
+        width: 17px;
+        height: 17px;
+        background-color: white;
+        border-radius: 50%;
+        .dotStep {
+          background-color: #f22e00;
+        }
+      }
+      .addNewStep.doneStep {
+        .dotStep {
+          background-color: #f22e00;
+        }
+      }
+    }
+  }
+}

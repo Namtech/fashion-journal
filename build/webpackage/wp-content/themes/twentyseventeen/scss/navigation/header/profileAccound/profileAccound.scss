@@ -1,0 +1,99 @@
+#profileAccound{
+  &.showBox{
+    margin-right: 0px;
+  }
+  margin-right: -540px;
+  transition: 0.3s linear;
+  z-index: 11;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  .headerProfile{
+    background-color: #3c444f;
+    padding: 33px 33px;
+    img{
+      width: 13px;
+      height: 13px;
+      float: right;
+      cursor: pointer;
+    }
+    h3{
+      font-size: 18px;
+      color: #FFFFFF;
+      display: inline;
+    }
+  }
+  .bodyProfile{
+    padding: 33px 33px 0px 33px;
+    .profileForm {
+      p{
+        color: #2e3237;
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+      .form-group {
+        background-color: #ffffff;
+        padding: 16px;
+        margin-bottom: 20px;
+        label {
+          font-family: 'Gotham-Bold', sans-serif;
+          color: #000000;
+          font-size: 10px;
+          line-height: 19px;
+          text-transform: uppercase;
+          margin: 0px;
+        }
+        input.form-control {
+          border: none;
+          box-shadow: none;
+          padding: 0px;
+          color: $mainColor;
+          font-size: 20px;
+          line-height: 19px;
+        }
+      }
+      .updateImageProfile{
+        padding: 38px 81px 37px 82px;
+        img{
+          width: 107px;
+          height: 101px;
+          margin-right: 18px;
+        }
+        .bntUpImage {
+          margin-left: 18px;
+          display: inline-block;
+          padding: 10px 15px;
+          background-color: #292c30;
+          border-radius: 100px;
+          border: none;
+          label{
+            margin-right: 20px;
+            font-family: 'Gotham-Light', sans-serif;
+          }
+          label, i{
+            font-size: 11px;
+            color: #FFFFFF;
+          }
+          input {
+            display: none;
+          }
+        }
+      }
+      .btnUpdteDetail{
+        font-size: 16px;
+        line-height: 13px;
+        color: #FFFFFF;
+        font-family: 'Gotham-Bold', sans-serif;
+        padding: 40px 148px 40px 148px;
+        background-color: #f13814;
+        border: none;
+        border-radius: 0px;
+      }
+    }
+  }
+}

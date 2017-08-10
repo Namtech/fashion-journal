@@ -1,0 +1,25 @@
+/*
+ * CSS3 Animation fix for all browser
+ * Usage : @include vendors(propertyName, value);
+ * propertyName : transition, transform, box-shadow, border-radius, animation
+ */
+
+@mixin vendor($property,$value) {
+    @if $property == box-shadow or $property == border-radius {
+        -webkit-#{$property}: $value;
+        -moz-#{$property}: $value;
+        #{$property}: $value;
+    }
+    @if $property == transition or $property == transform {
+        -webkit-#{$property}: $value;
+        -moz-#{$property}: $value;
+        -ms-#{$property}: $value;
+        -o-#{$property}: $value;
+        #{$property}: $value;
+    }
+    @if $property == animation {
+        -webkit-#{$property}: $value;
+        -o-#{$property}: $value;
+        #{$property}: $value;
+    }
+}

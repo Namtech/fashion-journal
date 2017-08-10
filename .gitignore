@@ -1,6 +1,5 @@
 # System-level
 .DS_Store
-webpackage/
 
 # App stuff
 .sass-cache

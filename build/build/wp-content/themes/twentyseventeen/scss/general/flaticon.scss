@@ -1,0 +1,24 @@
+.fi:before{
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-home:before { content: "\f100"; }
+.flaticon-layers-icon:before { content: "\f101"; }
+.flaticon-nine-black-tiles:before { content: "\f102"; }
+.flaticon-shapes:before { content: "\f103"; }
+
+$font-Flaticon-home: "\f100";
+$font-Flaticon-layers-icon: "\f101";
+$font-Flaticon-nine-black-tiles: "\f102";
+$font-Flaticon-shapes: "\f103";

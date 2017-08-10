@@ -1,0 +1,27 @@
+.menuFooter{
+  text-align: center;
+  list-style: none;
+  padding:30px 0;
+  margin-bottom: 0;
+  background: #fcfbfc !important;
+  li{
+    display: inline-block;
+    &:last-child{
+      a{
+        border: none;
+      }
+    }
+    a{
+      border-right: 1px solid #b7b9bd;
+      padding:0 20px;
+      text-decoration: none;
+      font-family: 'Basis-Grotesque-Regular',sans-serif;
+      color: #aaaaaa;
+      font-size: 12px;
+      font-weight: normal;
+      &:hover{
+        color:#FF2E00;
+      }
+    }
+  }
+}

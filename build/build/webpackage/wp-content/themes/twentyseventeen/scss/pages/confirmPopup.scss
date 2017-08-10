@@ -1,0 +1,40 @@
+.confirmPopupStyle{
+  text-align: center;
+  .modal-content{
+    max-width: 400px;
+    margin: auto;
+    padding: 35px 0;
+    h3{
+      margin: 0;
+      opacity: 0.15;
+      color: #27233a;
+      font-family:'Basis-Grotesque-Bold',sans-serif;
+      font-size: 32px;
+      font-weight: normal;
+      letter-spacing: -1px;
+      line-height: 40px;
+    }
+    h6{
+      opacity: 0.6;
+      color: #27233a;
+      font-family:'Basis-Grotesque-Medium',sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 25px;
+      margin: 10px 0 20px;
+    }
+    a{
+      font-family: 'Basis-Grotesque-Medium',sans-serif;
+      font-weight: normal;
+      font-size: 13px;
+      border-radius: 28px;
+      background-color: #ff4249;
+      display: inline-block;
+      width: 115px;
+      padding: 10px 0 9px 0;
+      color: #fff;
+      margin:0 10px;
+      line-height: normal;
+    }
+  }
+}

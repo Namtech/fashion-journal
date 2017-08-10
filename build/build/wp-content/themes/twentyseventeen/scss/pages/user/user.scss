@@ -1,0 +1,76 @@
+#userPage{
+  article{
+    margin-top:105px;
+    margin-left: 191px;
+    .wrapperItem{
+      margin-top:51px;
+      padding: 0 112px;
+      .item{
+        margin-bottom: 12px;
+        background: #fcfbfc;
+        height:88px;
+        line-height: 88px;
+        .imgName{
+          .check{
+            i{}
+          }
+          .circleBlank{
+            opacity: 0;
+          }
+          img{
+            margin-left: 23px;
+            margin-right: 26px;
+          }
+          b{
+            color: #2f3540;
+            font-family: 'Roboto',sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 44px;
+          }
+        }
+        .centerCol{
+          span{
+            color: #2f3540;
+            font-family: 'Roboto',sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+        .viewAndDeleteButton{
+          text-align: right;
+          padding-right: 46px;
+          a:first-child{
+            display: inline-block;
+            width: 58px;
+            height: 25px;
+            border-radius: 100px;
+            background-color: #828893;
+            color: #fff;
+            font-family: 'Roboto',sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            text-align: center;
+            line-height: 21px;
+            margin-right:13px;
+            text-decoration: none;
+            border:2px solid #828893 ;
+            i{
+              margin-left: 10px;
+            }
+          }
+          a:hover{
+            color:#828893;
+            background: transparent;
+          }
+          a:last-child{
+            i{
+              font-size: 15px;
+              color: #828893;
+            }
+          }
+        }
+      }
+    }
+  }
+}
