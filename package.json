@@ -12,7 +12,7 @@
     "scripts": {
         "install": "bower install",
         "start": "gulp cleanStyles && gulp build",
-        "build": "gulp cleanStyles && gulp build && gulp migrateAfterBuild",
+        "build": "gulp cleanStyles && gulp build",
         "deploy": "git push git@github.com:nguyenpham95/fashion-journal.git --all"
     },
     "devDependencies": {

@@ -1,1 +1,0 @@
-!function(n){n(document).on("keydown.twentysixteen",function(t){var e=!1;if(37===t.which)e=n(".nav-previous a").attr("href");else{if(39!==t.which)return;e=n(".nav-next a").attr("href")}e&&!n("textarea, input").is(":focus")&&(window.location=e)})}(jQuery);

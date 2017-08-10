@@ -1,9 +1,0 @@
-/*
- * Box position
- * Usage : @include box(width,height);
- * Default value is auto
- */
-@mixin box($width,$height){
-  width:$width;
-  height: $height;
-}

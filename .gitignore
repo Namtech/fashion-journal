@@ -1,5 +1,6 @@
 # System-level
 .DS_Store
+build/
 
 # App stuff
 .sass-cache
