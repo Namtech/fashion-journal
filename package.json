@@ -11,8 +11,10 @@
     },
     "scripts": {
         "install": "bower install",
-        "start": "gulp cleanStyles && gulp build",
-        "build": "gulp cleanStyles && gulp build",
+        "init": "gulp clear && gulp compile && gulp init",
+        "start": "gulp clear && gulp compile && gulp export",
+        "build": "gulp clear && gulp compile",
+        "build-dev": "gulp replace-dev",
         "deploy": "git push git@github.com:nguyenpham95/fashion-journal.git --all"
     },
     "devDependencies": {

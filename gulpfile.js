@@ -77,14 +77,6 @@ gulp.task('migrateAfterBuild', () => {
         .pipe(gulp.dest('./build'));
 });
 
-
-gulp.task('cleanStyles', () => {
-    del([Config.paths.build.root + '/**/*'], { force: true }).then(paths => {
-        console.log('Deleted files and folders:\n', paths.join('\n'));
-    });;
-});
-
-
 gulp.task('buildSCSS', ['migrate'], () => {
     return gulp.src(Config.paths.build.root + '/**/*/main.scss')
         .pipe(sass({
@@ -110,36 +102,65 @@ gulp.task('uglifyJS', ['cleanCSS'], () => {
         .pipe(gulp.dest(Config.paths.build.root));
 });
 
-
-gulp.task('build', ['uglifyJS']);
-
-
-
-
-// AWS SERVER TASKS
-
-
-gulp.task('replaceLocalhost', () => {
-
+gulp.task('replacePHP_dev', () => {
     // const htmlFilter = filter('**/*.html');
     const phpFilter = filter('**/*.php');
-
     return gulp.src(Config.paths.build.root + '/**/*')
         // .pipe(htmlFilter)
         // .pipe(replace('customized-filed-here', 'http://fj-sg.nativesdev.com.au'))
         // .pipe(concat('bundle.js'))
         // .pipe(htmlFilter.restore)
         .pipe(phpFilter)
-        .pipe(replace('http://localhost', 'http://fj-sg.nativesdev.com.au'))
+        // .pipe(replace('http://fj-dev.nativesdev.com.au', 'http://localhost'))
+        .pipe(replace('http://localhost', 'http://fj-dev.nativesdev.com.au'))
         // .pipe(phpFilter.restore)
         .pipe(gulp.dest(Config.paths.build.root));
 });
 
-
-gulp.task('createDbupdateFolder', () => {
-    return runCmd('php function.php --uri=dbupdate/update/dev').exec()
-        .pipe(gulp.dest(Config.paths.build.root));
+gulp.task('replaceSQL_dev', () => {
+    // const htmlFilter = filter('**/*.html');
+    const sqlFilter = filter('**/*.sql');
+    return gulp.src('./wp-db/fashionJournalDb.sql')
+        // .pipe(htmlFilter)
+        // .pipe(replace('customized-filed-here', 'http://fj-sg.nativesdev.com.au'))
+        // .pipe(concat('bundle.js'))
+        // .pipe(htmlFilter.restore)
+        // .pipe(sqlFilter)
+        // .pipe(replace('http://fj-dev.nativesdev.com.au', 'http://localhost'))
+        .pipe(replace('http://localhost', 'http://fj-dev.nativesdev.com.au'))
+        // .pipe(phpFilter.restore)
+        .pipe(gulp.dest('./wp-db'));
 });
+
+gulp.task('exportSQL', () => {
+    return runCmd('cd wp-db & mysqldump -u root wordpress > fashionJournalDb.sql').exec();
+});
+
+gulp.task('initSQL', () => {
+    return runCmd('cd wp-db & mysql -u root wordpress < fashionJournalDb.sql').exec();
+});
+
+// MOTHER LEVEL
+
+gulp.task('clear', () => {
+    del([Config.paths.build.root + '/**/*'], { force: true }).then(paths => {
+        console.log('Deleted files and folders:\n', paths.join('\n'));
+    });;
+});
+
+gulp.task('compile', ['uglifyJS']);
+
+gulp.task('export', ['exportSQL']);
+
+gulp.task('init', ['initSQL']);
+
+gulp.task('replace-dev', ['replacePHP_dev', 'replaceSQL_dev']);
+
+
+
+
+// AWS SERVER TASKS
+
 
 gulp.task('deploy', ['replaceLocalhost']);
 
@@ -150,40 +171,40 @@ gulp.task('zip', () => {
 });
 
 
-// Images
-gulp.task('images:clean', function(next) {
-    del(Config.paths.build.images + '/**', next);
-});
-gulp.task('images', ['images:clean'], function() {
-    return gulp.src(Config.paths.src.images + '/**/*')
-        .pipe(gulpifelse(
-            Config.cache,
-            function() {
-                return cache(imagemin(Config.imagemin)) // if
-            },
-            function() {
-                return imagemin(Config.imagemin) // else
-            }
-        ))
-        .pipe(gulp.dest(Config.paths.build.images + '/'));
-});
+// // Images
+// gulp.task('images:clean', function(next) {
+//     del(Config.paths.build.images + '/**', next);
+// });
+// gulp.task('images', ['images:clean'], function() {
+//     return gulp.src(Config.paths.src.images + '/**/*')
+//         .pipe(gulpifelse(
+//             Config.cache,
+//             function() {
+//                 return cache(imagemin(Config.imagemin)) // if
+//             },
+//             function() {
+//                 return imagemin(Config.imagemin) // else
+//             }
+//         ))
+//         .pipe(gulp.dest(Config.paths.build.images + '/'));
+// });
 
-// Templates
-gulp.task('templates', function() {
-    // return gulp.src(Config.paths.src.tmpl + '/**/*')
-    //   .pipe(handlebars())
-    //   .pipe(defineModule('plain'))
-    //   .pipe(declare({
-    //     namespace: 'tmpl'
-    //   }))
-    //   .pipe(concat('templates.js'))
-    //   .pipe(gulp.dest(Config.paths.src.js + '/'));
-});
+// // Templates
+// gulp.task('templates', function() {
+//     // return gulp.src(Config.paths.src.tmpl + '/**/*')
+//     //   .pipe(handlebars())
+//     //   .pipe(defineModule('plain'))
+//     //   .pipe(declare({
+//     //     namespace: 'tmpl'
+//     //   }))
+//     //   .pipe(concat('templates.js'))
+//     //   .pipe(gulp.dest(Config.paths.src.js + '/'));
+// });
 
-// HTML, JavaScript, CSS
-gulp.task('html:clean', function(next) {
-    del([Config.paths.build.root + '/**/*.html', Config.paths.build.root + '/**/*.css', Config.paths.build.root + '/**/*.js'], next);
-});
+// // HTML, JavaScript, CSS
+// gulp.task('html:clean', function(next) {
+//     del([Config.paths.build.root + '/**/*.html', Config.paths.build.root + '/**/*.css', Config.paths.build.root + '/**/*.js'], next);
+// });
 gulp.task('html', ['html:clean'], function() {
     var jsFilter = filter('**/*.js'),
         cssFilter = filter('**/*.css'),
@@ -208,12 +229,12 @@ gulp.task('html', ['html:clean'], function() {
 });
 
 // Server
-gulp.task('server', function() {
-    var server = express()
-        .use(express.static(path.resolve(Config.paths.src.root)))
-        .listen(Config.port);
-    gutil.log('Server listening on port ' + Config.port);
-});
+// gulp.task('server', function() {
+//     var server = express()
+//         .use(express.static(path.resolve(Config.paths.src.root)))
+//         .listen(Config.port);
+//     gutil.log('Server listening on port ' + Config.port);
+// });
 
 // LiveReload
 gulp.task('livereload', function() {
@@ -243,13 +264,13 @@ gulp.task('watch', function() {
     });
 });
 
-gulp.task('clear', function(done) {
-    return cache.clearAll(done);
-});
+// gulp.task('clear', function(done) {
+//     return cache.clearAll(done);
+// });
 
 
-gulp.task('clean', ['fonts:clean', 'images:clean', 'html:clean', 'extra:clean']);
+// gulp.task('clean', ['fonts:clean', 'images:clean', 'html:clean', 'extra:clean']);
 
-gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function() {
-    if (argv.o) opn('http://localhost:' + Config.port);
-});
+// gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function() {
+//     if (argv.o) opn('http://localhost:' + Config.port);
+// });

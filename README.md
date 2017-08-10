@@ -5,6 +5,7 @@
 A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS Code Pipeline
 
 * Inspired by: [http://github.com/3bola/gulp-starter](http://github.com/3bola/gulp-starter)
+* Visit: [Stagging Server](http://54.66.149.167/)
 
 ### Features
 
@@ -25,15 +26,19 @@ A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS 
 * Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin. (Optional)
 * Download or your current [Word Press](https://wordpress.org/download/) template.
 * Download [XAMPP](https://www.apachefriends.org/download.html) and setup PHP environment [Apache and MySQL](https://netbeans.org/kb/docs/php/configure-php-environment-windows.html)
+* Add the folder `C:\xampp\mysql\bin` to the $PATH variable
 
 #### Installation
 
-Note: before following the steps below please locate your ```htdocs``` folder. Then open Command Prompt and type:
+NOTE: before following the steps below please:
+
+1. Complete the Prerequisite steps
+2. Locate your ```htdocs``` folder. Then open Command Prompt and type:
 
 ```sh
 git clone git@github.com:Namtech/fashion-journal.git /***/***/htdocs
 cd /***/***/htdocs
-npm install && npm start
+npm install && npm init
 ```
 
 Then using XAMPP Control Pannel and start Apache and mySQL and go to your browser to open [http://localhost](http://localhost)!
@@ -84,8 +89,8 @@ npm start
 #### Developing
 
 * In wordpress, template files are stored in folder `wp-content`
-* Your template files should be located in the folder `htdocs\webpackage\wp-content`
-* When `npm start` are runned, files within `htdocs\webpackage\wp-content` will be compiled and migrated to `htdocs\wp-content`
+* Your template files should ONLY be located in the folder `htdocs\webpackage\wp-content`
+* CAUTION: Any `*.js`, `*.css` and `*.scss` modified outside the folder `htdocs\webpackage\wp-content` will not be compiled and compressed !
 
 #### Codeflow
 
