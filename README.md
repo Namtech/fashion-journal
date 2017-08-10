@@ -33,6 +33,7 @@ A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS 
 NOTE: before following the steps below please:
 
 1. Complete the Prerequisite steps
+
 2. Locate your ```htdocs``` folder. Then open Command Prompt and type:
 
 ```sh
