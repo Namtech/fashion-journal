@@ -95,10 +95,16 @@ To init blank mySQL db, run:
 npm run init
 ```
 
-On server, to run customized build for it, run:
+To run customized build (on server only), run:
 
 ```sh
 npm run build
+```
+
+To create a release, run:
+
+```sh
+npm run release
 ```
 
 #### Developing

@@ -15,6 +15,7 @@
         "start": "gulp clear && gulp compile && gulp export",
         "build": "gulp clear && gulp compile",
         "build-dev": "gulp replace-dev",
+        "release": "gulp release",
         "deploy": "git push git@github.com:nguyenpham95/fashion-journal.git --all"
     },
     "devDependencies": {

@@ -140,6 +140,12 @@ gulp.task('initSQL', () => {
     return runCmd('cd wp-db & mysql -u root wordpress < fashionJournalDb.sql').exec();
 });
 
+gulp.task('zip', () => {
+    gulp.src('./*')
+        .pipe(zip('my-app.zip'))
+        .pipe(gulp.dest('./build'));
+});
+
 // MOTHER LEVEL
 
 gulp.task('clear', () => {
@@ -156,7 +162,7 @@ gulp.task('init', ['initSQL']);
 
 gulp.task('replace-dev', ['replacePHP_dev', 'replaceSQL_dev']);
 
-
+gulp.task('release', ['zip']);
 
 
 // AWS SERVER TASKS
@@ -164,11 +170,7 @@ gulp.task('replace-dev', ['replacePHP_dev', 'replaceSQL_dev']);
 
 gulp.task('deploy', ['replaceLocalhost']);
 
-gulp.task('zip', () => {
-    gulp.src('./*')
-        .pipe(zip('my-app.zip'))
-        .pipe(gulp.dest('./build'));
-});
+
 
 
 // // Images
