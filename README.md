@@ -83,6 +83,8 @@ htdocs:
 
 #### Commands
 
+NOTE: for any of these command to run, remember to start Apache and MySQL !
+
 To build your code and see changes in localhost, run:
 
 ```sh
@@ -101,7 +103,7 @@ To run customized build (on server only), run:
 npm run build
 ```
 
-To create a release, run:
+To create a .zip release, run:
 
 ```sh
 npm run release

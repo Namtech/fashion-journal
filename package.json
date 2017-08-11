@@ -16,7 +16,7 @@
         "build": "gulp clear && gulp compile",
         "build-dev": "gulp replace-dev",
         "release": "gulp release",
-        "deploy": "git push git@github.com:nguyenpham95/fashion-journal.git --all"
+        "deploy": "git status & git add . & git commit -m 'Automatic deploy' & git push git@github.com:nguyenpham95/fashion-journal.git --all"
     },
     "devDependencies": {
         "bower": "*",

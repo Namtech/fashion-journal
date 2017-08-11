@@ -1,0 +1,1 @@
+mysql -u root wordpress < fashionJournalDb.sql
