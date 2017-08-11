@@ -39,7 +39,7 @@ NOTE: before following the steps below please:
 ```sh
 git clone git@github.com:Namtech/fashion-journal.git /***/***/htdocs
 cd /***/***/htdocs
-npm install && npm init
+npm install && npm run init
 ```
 
 Then using XAMPP Control Pannel and start Apache and mySQL and go to your browser to open [http://localhost](http://localhost)!
@@ -76,6 +76,7 @@ htdocs:
 - |__ gulpfile.js----------------------// Front-end compilation file
 - |__ bower.json-----------------------// Bower package manager for gulp
 - |__ package.json---------------------// npm scripts for development and deployment
+-
 
 ```
 
@@ -85,6 +86,18 @@ To build your code and see changes in localhost, run:
 
 ```sh
 npm start
+```
+
+To init blank mySQL db, run:
+
+```sh
+npm run init
+```
+
+On server, to run customized build for it, run:
+
+```sh
+npm run build
 ```
 
 #### Developing
