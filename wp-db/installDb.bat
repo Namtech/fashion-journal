@@ -1,1 +1,1 @@
-mysql -u root wordpress < fashionJournalDb.sql
+cd C:\xampp\htdocs\wp-db & mysql -u root wordpress < fashionJournalDb.sql
