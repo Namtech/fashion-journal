@@ -5,7 +5,7 @@
 A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS Code Pipeline
 
 * Inspired by: [http://github.com/3bola/gulp-starter](http://github.com/3bola/gulp-starter)
-* Visit stagging server: [http://54.66.149.167/](http://54.66.149.167/)
+* Visit staging server: [http://fj-dev.nativesdev.com.au](http://54.66.149.167)
 
 ### Features
 
