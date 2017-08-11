@@ -11,7 +11,7 @@ A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS 
 ### Features
 
 * Original Wordpress application structure
-* Livereloading development server with automatic building of SCSS files
+* Livereloading development server with automatic building of SCSS
 * Bower component management
 * Automatic image compressing
 * SCSS compiling
@@ -25,7 +25,7 @@ A front-end Gulp compiler for Wordpress application and Automatic deploy to AWS 
 
 * Make sure you have latest [NodeJS](http://nodejs.org/) installed.
 * Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin. (Optional)
-* Download or your current [Word Press](https://wordpress.org/download/) template.
+* Download or use your current [Word Press](https://wordpress.org/download/) template.
 * Download [XAMPP](https://www.apachefriends.org/download.html) and setup PHP environment [Apache and MySQL](https://netbeans.org/kb/docs/php/configure-php-environment-windows.html)
 * Add the folder `C:\xampp\mysql\bin` to the $PATH variable
 
@@ -63,10 +63,14 @@ htdocs:
 - |__ wp-includes----------------------// Wordpress plugins
 - |     |__ [...]
 - |
+- |__ wp-db----------------------------// Store exported .sql and .bat file for server import
+- |     |__ fashionJournalDb.sql-------// exported .sql file
+- |     |__ installDb.bat--------------// .bat file import .sql file into mySQL on server
+- |
 - |__ wp-[...]-------------------------// Wordpress files.
 - |
 - |__ webpackage-----------------------// Source of templates development.
-- |     |__ wp-content---------------- // Preserve the structure of root wp-content folder, 
+- |     |__ wp-content---------------- // Preserve the structure of root wp-content folder
 - |         |                          // Used for template development
 - |         |__ themes
 - |         |__ plugins
@@ -151,7 +155,12 @@ git status
 git add .
 git commit -m "Your work instance"
 git pull origin master
-git push origin master
+```
+
+Anh then instead of `git push`, run:
+
+```sh
+npm run deploy
 ```
 
 #### Configuration
