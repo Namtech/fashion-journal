@@ -79,7 +79,7 @@ htdocs:
 
 ```
 
-#### Running
+#### Commands
 
 To build your code and see changes in localhost, run:
 
@@ -94,6 +94,8 @@ npm start
 * CAUTION: Any `*.js`, `*.css` and `*.scss` modified outside the folder `htdocs\webpackage\wp-content` will not be compiled and compressed !
 
 #### Codeflow
+
+![Image structure not found](https://github.com/nguyenpham95/fashion-journal/blob/master/webpackage/app-structure.png)<br/>
 
 When `npm start` is runned, it does the following:
 
