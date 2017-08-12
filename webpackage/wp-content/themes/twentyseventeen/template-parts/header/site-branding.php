@@ -16,7 +16,7 @@
 
 		<div class="site-branding-text">
 			<?php if ( is_front_page() ) : ?>
-				<h1 class="site-title">Fashion Journal</h1>
+				<h1 class="site-title">Fashion Journal from NamTech</h1>
 			<?php else : ?>
 				<p class="site-title">A brand new Wordpress application run on AWS</p>
 			<?php endif; ?>
