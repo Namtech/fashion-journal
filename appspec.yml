@@ -95,18 +95,18 @@ hooks:
 #      runas:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
-AfterInstall:
-    - location: C:\xampp\htdocs\wp-db\installDb.bat     
-      timeout: 3600
+#AfterInstall:
+#   - location: C:\xampp\htdocs\wp-db\installDb.bat     
+#     timeout: 3600
 #      runas:
 #    - location: 
 #      timeout:
 #      runas:
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
-#  ApplicationStart:
-#    - location:     
-#      timeout: 
+ApplicationStart:
+    - location: C:\xampp\htdocs\wp-db\installDb.bat         
+      timeout: 3600
 #      runas:
 #    - location: 
 #      timeout:
