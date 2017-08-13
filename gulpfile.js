@@ -132,6 +132,14 @@ gulp.task('replaceSQL_dev', () => {
         .pipe(gulp.dest('./wp-db'));
 });
 
+gulp.task('replaceHTML', () => {
+    const htmlFilter = filter('**/*.html');
+    return gulp.src(Config.paths.build.root + '/**/*')
+        .pipe(htmlFilter)
+        .pipe(replace('http://localhost/', ''))
+        .pipe(gulp.dest(Config.paths.build.root));
+});
+
 gulp.task('exportSQL', () => {
     return runCmd('cd wp-db & mysqldump -u root wordpress > fashionJournalDb.sql').exec();
 });
@@ -160,7 +168,7 @@ gulp.task('export', ['exportSQL']);
 
 gulp.task('init', ['initSQL']);
 
-gulp.task('replace-dev', ['replacePHP_dev', 'replaceSQL_dev']);
+gulp.task('replace-dev', ['replacePHP_dev', 'replaceSQL_dev', 'replaceHTML']);
 
 gulp.task('release', ['zip']);
 
