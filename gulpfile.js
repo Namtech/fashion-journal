@@ -112,7 +112,7 @@ gulp.task('replacePHP_dev', () => {
         // .pipe(htmlFilter.restore)
         .pipe(phpFilter)
         // .pipe(replace('http://fj-dev.nativesdev.com.au', 'http://localhost'))
-        .pipe(replace('http://localhost', 'http://fj-dev.nativesdev.com.au'))
+        .pipe(replace('http://localhost', 'http://54.66.144.167'))
         // .pipe(phpFilter.restore)
         .pipe(gulp.dest(Config.paths.build.root));
 });
@@ -127,7 +127,7 @@ gulp.task('replaceSQL_dev', () => {
         // .pipe(htmlFilter.restore)
         // .pipe(sqlFilter)
         // .pipe(replace('http://fj-dev.nativesdev.com.au', 'http://localhost'))
-        .pipe(replace('http://localhost', 'http://fj-dev.nativesdev.com.au'))
+        .pipe(replace('http://localhost', 'http://54.66.144.167'))
         // .pipe(phpFilter.restore)
         .pipe(gulp.dest('./wp-db'));
 });

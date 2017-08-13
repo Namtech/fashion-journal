@@ -13,7 +13,7 @@
         "install": "bower install",
         "init": "gulp clear && gulp compile && gulp init",
         "start": "gulp clear && gulp compile && gulp export",
-        "build": "gulp clear && gulp compile",
+        "build": "gulp clear && gulp compile && gulp replace-dev",
         "build-dev": "gulp replace-dev",
         "release": "gulp release",
         "deploy": "git push git@github.com:nguyenpham95/fashion-journal.git --all"
