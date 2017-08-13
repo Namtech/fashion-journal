@@ -103,32 +103,19 @@ gulp.task('uglifyJS', ['cleanCSS'], () => {
 });
 
 gulp.task('replacePHP_dev', () => {
-    // const htmlFilter = filter('**/*.html');
     const phpFilter = filter('**/*.php');
     return gulp.src(Config.paths.build.root + '/**/*')
-        // .pipe(htmlFilter)
-        // .pipe(replace('customized-filed-here', 'http://fj-sg.nativesdev.com.au'))
-        // .pipe(concat('bundle.js'))
-        // .pipe(htmlFilter.restore)
         .pipe(phpFilter)
         // .pipe(replace('http://fj-dev.nativesdev.com.au', 'http://localhost'))
         .pipe(replace('http://localhost', 'http://54.66.144.167'))
-        // .pipe(phpFilter.restore)
         .pipe(gulp.dest(Config.paths.build.root));
 });
 
 gulp.task('replaceSQL_dev', () => {
-    // const htmlFilter = filter('**/*.html');
     const sqlFilter = filter('**/*.sql');
     return gulp.src('./wp-db/fashionJournalDb.sql')
-        // .pipe(htmlFilter)
-        // .pipe(replace('customized-filed-here', 'http://fj-sg.nativesdev.com.au'))
-        // .pipe(concat('bundle.js'))
-        // .pipe(htmlFilter.restore)
-        // .pipe(sqlFilter)
         // .pipe(replace('http://fj-dev.nativesdev.com.au', 'http://localhost'))
         .pipe(replace('http://localhost', 'http://54.66.144.167'))
-        // .pipe(phpFilter.restore)
         .pipe(gulp.dest('./wp-db'));
 });
 
