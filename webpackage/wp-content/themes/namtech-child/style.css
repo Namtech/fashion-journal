@@ -4,11 +4,10 @@
  * Theme URI: http://namtech.com.au
  * Version: 1.0
  * Author: namtech
- * Author URI: http://namtech.com.au
- * Tags: nam technology, technology, namtech, wordpress, php, css, html
- * Textdomain: namtech
- * Languages Folder: /language
+ * Template: namtech
 */
+
+@import url("../namtech/style.css");
 
 body {
 	margin: 0;
